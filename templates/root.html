@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расшифровка wav</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!--Adding JQuery  -->
+     <script src="{{ url_for('static', filename='JQuery.js')}}"></script>
+
+
+</head>
+
+
+<script>
+
+
+function translateSound(){
+
+    document.getElementById("textareaResult").innerHTML = ' ';
+
+
+    $.ajax({
+        url: '/translate',
+        type: 'POST',
+        success: function(data){
+            console.log(data)
+            document.getElementById("textareaResult").innerHTML = data;
+
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+
+
+};
+
+
+</script>
+
+<body>
+
+<div class="container" style="background-color: #1faee9; margin-top: 1%;">
+
+    <button type="button" class="btn btn-danger mb-3" name="translate" style="margin-top: 10%; margin-left: 45%" onclick="translateSound()">
+            Расшифровать wav</button>
+
+    <div class="form-group">
+        <textarea class="form-control" style="width:100%; height:300px;" id="textareaResult" rows="3"></textarea>
+  </div>
+
+</div>
+
+
+</body>
+</html>
